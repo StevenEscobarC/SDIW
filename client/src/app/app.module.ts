@@ -5,13 +5,17 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './public/masterPage/footer/footer.component';
 import { HeroComponent } from './public/masterPage/hero/hero.component';
 import { NavbarComponent } from './public/masterPage/navbar/navbar.component';
+import { HomeComponent } from './public/masterPage/home/home.component';
+import { PageNotFoundComponent } from './public/masterPage/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeroComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,16 @@
 <nav>
     <div class="nav-wrapper" style="background-color: Chartreuse;">
-        <a href="#!" class="brand-logo">Hogar Colombia</a>
+        <a routerLink="/home" class="brand-logo">Hogar Colombia</a>
         <a href="#" data-target="mobile-inmobiliaria" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Iniciar sesión</a></li>
-            <li><a href="badges.html">Salir de sesión</a></li>
+            <li><a routerLink="/security/login">Iniciar sesión</a></li>
+            <li><a routerLink="/security/logout">Salir de sesión</a></li>
 
         </ul>
     </div>
 </nav>
 
 <ul class="sidenav" id="mobile-inmobiliaria">
-    <li><a href="sass.html">Login</a></li>
-    <li><a href="badges.html">Logout</a></li>
+    <li><a routerLink="/security/login">Iniciar sesión</a></li>
+    <li><a routerLink="/security/logout">Salir de sesión</a></li>
 </ul>
