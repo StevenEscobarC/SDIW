@@ -1,0 +1,49 @@
+{
+  "name": "property",
+  "plural": "properties",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "number",
+      "required": true
+    },
+    "type": {
+      "type": "number",
+      "required": true
+    },
+    "offerType": {
+      "type": "boolean",
+      "required": true
+    },
+    "contactSeller": {
+      "type": "string",
+      "required": true
+    },
+    "photography": {
+      "type": "String"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
