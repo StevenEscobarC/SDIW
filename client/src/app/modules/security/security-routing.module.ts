@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+  /*jelouda */
   {
     path: 'logout',
     component: LogoutComponent

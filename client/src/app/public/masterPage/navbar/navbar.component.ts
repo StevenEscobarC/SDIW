@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SecurityService } from 'src/app/services/security.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  userLogged: boolean;
+  userName: String;
+  constructor(private secService: SecurityService) { }
 
   ngOnInit() {
+
+    this.verifyUserSession();
+
+
+  }
+
+  verifyUserSession() {
+    let user = this.secService.isUserLogged();
+    this.userName = user.name;
+    this.userLogged = user.logged;
   }
 
 }
