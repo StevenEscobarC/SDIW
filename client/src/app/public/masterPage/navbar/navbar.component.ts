@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecurityService } from 'src/app/services/security.service';
+import { Subscription } from 'rxjs';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +10,12 @@ import { SecurityService } from 'src/app/services/security.service';
 })
 export class NavbarComponent implements OnInit {
 
-  userLogged: boolean;
-  userName: String;
+  userInfo : UserModel;
+  userLogged : boolean = false;
+  userName : String;
+
+  subscription : Subscription;
+
   constructor(private secService: SecurityService) { }
 
   ngOnInit() {
@@ -20,9 +26,19 @@ export class NavbarComponent implements OnInit {
   }
 
   verifyUserSession() {
-    let user = this.secService.isUserLogged();
-    this.userName = user.name;
-    this.userLogged = user.logged;
+    this.subscription = this.secService.getUserInfo().subscribe(user => {
+
+      this.userInfo = user;
+      this.updateInfo();
+      
+    });
+  }
+
+  updateInfo(){
+    let msg = "In session: ";
+    this.userLogged = this.userInfo.isLogged;
+    this.userName = `${msg} ${this.userInfo.firstName} ${this.userInfo.firstLastName} ${this.userInfo.secondLastName}`;
+
   }
 
 }

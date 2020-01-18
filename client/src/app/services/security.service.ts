@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { UserModel } from '../models/user.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,14 +8,14 @@ import { Injectable } from '@angular/core';
 export class SecurityService {
 
 
-  userLogged: boolean = false;
-  name: String = '';
+  
+  userInfo = new BehaviorSubject<UserModel>(new UserModel());
 
   constructor() { }
 
 
-  isUserLogged() {
-    return { logged: this.userLogged, name: this.name };
+  getUserInfo() {
+    return this.userInfo.asObservable();
   }
 
 
@@ -25,11 +27,15 @@ export class SecurityService {
   loginUser(username: String, pass: String) {
     let user = null
     if (username == "admin@gmail.com" && pass == "12345678") {
-      user = { name: 'admin', age: 20 };
-      this.name = 'Admin';
-      this.userLogged = true;
+      user = new UserModel();
+      user.firstName = "Steven";
+      user.firstLastName = "Escobar";
+      user.secondLastName = "Castaño";
+      user.email = "admin@gmail.com";
+      user.isLogged = true;
+      this.userInfo.next(user);
     }
-    return user
+    return user;
   }
 
 }
