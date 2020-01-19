@@ -38,5 +38,14 @@
   "property": {
     "dataSource": "db",
     "public": true
+  },
+  "customer": {
+    "dataSource": "db",
+    "public": true
+  },
+  "admin": {
+    "dataSource": "db",
+    "public": true
   }
+
 }

@@ -1,0 +1,43 @@
+{
+    "name": "admin",
+    "plural": "admins",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+      "validateUpsert": true
+    },
+    "properties": {
+      "firstname": {
+        "type": "string",
+        "required": true
+      },
+      "firstLastname": {
+        "type": "string",
+        "required": true
+      },
+      "secondLastname": {
+        "type": "string",
+        "required": true
+      },
+      "password": {
+        "type": "string",
+        "required": true
+      },
+      "email": {
+        "type": "string",
+        "required": true
+      },
+      "phone": {
+        "type": "string",
+        "required": true
+      },
+      "_id": {
+        "type": "number"
+      }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+  }
+  
