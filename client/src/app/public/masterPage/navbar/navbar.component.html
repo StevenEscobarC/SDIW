@@ -8,6 +8,7 @@
         <ul class="right hide-on-med-and-down">
             <li *ngIf="!userLogged"><a routerLink="/security/login">Iniciar sesión</a></li>
             <li *ngIf="userLogged"><a routerLink="/security/logout">Salir de sesión</a></li>
+            <li *ngIf="!userLogged"><a routerLink="/registry/users">Registrarse</a></li>
 
         </ul>
     </div>
@@ -16,4 +17,5 @@
 <ul class="sidenav" id="mobile-inmobiliaria">
     <li *ngIf="!userLogged"><a routerLink="/security/login">Iniciar sesión</a></li>
     <li *ngIf="userLogged"><a routerLink="/security/logout">Salir de sesión</a></li>
+    <li *ngIf="!userLogged"><a routerLink="/registry/users">Registrarse</a></li>
 </ul>
