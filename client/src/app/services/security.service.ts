@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
+  url: String = "http://localhost:3000/api/Users/"
 
 
-  
   userInfo = new BehaviorSubject<UserModel>(new UserModel());
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
 
   getUserInfo() {
@@ -24,8 +25,8 @@ export class SecurityService {
   /*cambiar con loopback */
 
 
-  loginUser(username: String, pass: String) {
-    let user = null
+  loginUser(username: String, pass: String): Observable<UserModel> {
+    /**let user = null
     if (username == "admin@gmail.com" && pass == "12345678") {
       user = new UserModel();
       user.firstName = "Steven";
@@ -34,13 +35,22 @@ export class SecurityService {
       user.email = "admin@gmail.com";
       user.isLogged = true;
       this.userInfo.next(user);
-    }
-    return user;
+    }*/
+    return this.http.post<UserModel>(`${this.url}login?include=User`, 
+    {
+      email: username,
+      password: pass
+
+    }, {
+      headers: new HttpHeaders({
+        "content-type": "application/json"
+      })
+    })
   }
 
-  logoutUser(){
+  logoutUser() {
 
-    
+
   }
 
 }

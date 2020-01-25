@@ -1,0 +1,33 @@
+{
+  "name": "city",
+  "plural": "cities",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "_countryId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "country-city": {
+      "type": "hasOne",
+      "model": "country",
+      "foreignKey": "_countryId",
+      "primaryKey": "_id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

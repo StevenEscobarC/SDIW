@@ -43,9 +43,12 @@
     "dataSource": "db",
     "public": true
   },
-  "admin": {
+  "country": {
+    "dataSource": "db",
+    "public": true
+  },
+  "city": {
     "dataSource": "db",
     "public": true
   }
-
 }
