@@ -30,5 +30,8 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.fgValidationBuilder();
   }
+  get fg() {
+    return this.fgValidation.controls;
+  }
 
 }
