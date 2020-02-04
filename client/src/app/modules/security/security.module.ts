@@ -5,7 +5,7 @@ import { SecurityRoutingModule } from './security-routing.module';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [LoginComponent, LogoutComponent],
@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
     SecurityRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClient
+    
   ]
   
 })

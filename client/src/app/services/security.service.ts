@@ -12,7 +12,20 @@ export class SecurityService {
 
   userInfo = new BehaviorSubject<UserModel>(new UserModel());
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.verifyUserInSession(); 
+  }
+
+  verifyUserInSession() {
+    let session = localStorage.getItem("activeUser");
+    if(session != undefined){
+      this.userInfo.next(JSON.parse(session));
+    }
+  }
+
+  isActiveSession(){
+    return this.userInfo.getValue().isLogged;
+  }
 
 
   getUserInfo() {
@@ -26,31 +39,28 @@ export class SecurityService {
 
 
   loginUser(username: String, pass: String): Observable<UserModel> {
-    /**let user = null
-    if (username == "admin@gmail.com" && pass == "12345678") {
-      user = new UserModel();
-      user.firstName = "Steven";
-      user.firstLastName = "Escobar";
-      user.secondLastName = "Castaño";
-      user.email = "admin@gmail.com";
-      user.isLogged = true;
-      this.userInfo.next(user);
-    }*/
-    return this.http.post<UserModel>(`${this.url}login?include=User`, 
-    {
-      email: username,
-      password: pass
+    return this.http.post<UserModel>(`${this.url}login?include=User`,
+      {
+        email: username,
+        password: pass
 
-    }, {
+      }, {
       headers: new HttpHeaders({
         "content-type": "application/json"
       })
     })
   }
 
+  saveLoginInfo(user: UserModel) {
+    user.isLogged = true;
+    this.userInfo.next(user);
+    localStorage.setItem("activeUser", JSON.stringify(user));
+  }
+
+
   logoutUser() {
-
-
+    localStorage.removeItem("activeUser");
+    this.userInfo.next(new UserModel());
   }
 
 }

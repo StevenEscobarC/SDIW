@@ -7,6 +7,7 @@ import { HeroComponent } from './public/masterPage/hero/hero.component';
 import { NavbarComponent } from './public/masterPage/navbar/navbar.component';
 import { HomeComponent } from './public/home/home.component';
 import { PageNotFoundComponent } from './public/page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PageNotFoundComponent } from './public/page-not-found/page-not-found.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
