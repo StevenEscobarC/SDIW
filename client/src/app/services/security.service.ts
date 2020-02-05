@@ -13,17 +13,17 @@ export class SecurityService {
   userInfo = new BehaviorSubject<UserModel>(new UserModel());
 
   constructor(private http: HttpClient) {
-    this.verifyUserInSession(); 
+    this.verifyUserInSession();
   }
 
   verifyUserInSession() {
     let session = localStorage.getItem("activeUser");
-    if(session != undefined){
+    if (session != undefined) {
       this.userInfo.next(JSON.parse(session));
     }
   }
 
-  isActiveSession(){
+  isActiveSession() {
     return this.userInfo.getValue().isLogged;
   }
 
@@ -62,5 +62,20 @@ export class SecurityService {
     localStorage.removeItem("activeUser");
     this.userInfo.next(new UserModel());
   }
+  registryUser(n: String, p: String, ln: String, e: String, ph: String): Observable<UserModel>{
+    return this.http.post<UserModel>(`${this.url}`,
+    {
+      email: e,
+      password: p,
+      firstLastname: ln,
+      name: n,
+      phone:ph
 
+    }, {
+    headers: new HttpHeaders({
+      "content-type": "application/json"
+    })
+  })
+
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SecurityService } from 'src/app/services/security.service';
 import { Subscription } from 'rxjs';
 import { UserModel } from 'src/app/models/user.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,7 @@ import { UserModel } from 'src/app/models/user.model';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  url: String = "http://localhost:3000/api/Users/"
 
   userInfo : UserModel;
   userLogged : boolean = false;
@@ -16,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
   subscription : Subscription;
 
-  constructor(private secService: SecurityService) { }
+  constructor(private secService: SecurityService,private http: HttpClient) { }
 
   ngOnInit() {
 
@@ -37,6 +39,7 @@ export class NavbarComponent implements OnInit {
   updateInfo(){
     let msg = "In session: ";
     this.userLogged = this.userInfo.isLogged;
+    /**this.userName= this.http.get<UserModel>(`${this.url}`)*/
     this.userName = `${msg} ${this.userInfo.firstName} ${this.userInfo.firstLastName} ${this.userInfo.secondLastName}`;
 
   }
