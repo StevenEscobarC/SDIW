@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
     let msg = "In session: ";
     this.userLogged = this.userInfo.isLogged;
     /**this.userName= this.http.get<UserModel>(`${this.url}`)*/
-    this.userName = `${msg} ${this.userInfo.firstName} ${this.userInfo.firstLastName} ${this.userInfo.secondLastName}`;
+    this.userName = `${msg} ${this.userInfo.firstName} ${this.userInfo.firstLastName} `;
 
   }
 

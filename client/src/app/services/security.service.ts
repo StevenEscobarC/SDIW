@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SecurityService {
-  url: String = "http://localhost:3000/api/Users/"
+  url: String = "http://localhost:3000/api/Users"
 
 
   userInfo = new BehaviorSubject<UserModel>(new UserModel());
@@ -35,11 +35,9 @@ export class SecurityService {
 
 
 
-  /*cambiar con loopback */
-
 
   loginUser(username: String, pass: String): Observable<UserModel> {
-    return this.http.post<UserModel>(`${this.url}login?include=User`,
+    return this.http.post<UserModel>(`${this.url}/login?include=User`,
       {
         email: username,
         password: pass
@@ -67,8 +65,8 @@ export class SecurityService {
     {
       email: e,
       password: p,
-      firstLastname: ln,
-      name: n,
+      firstLastName: ln,
+      firstName: n,
       phone:ph
 
     }, {
