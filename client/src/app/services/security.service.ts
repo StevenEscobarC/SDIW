@@ -32,10 +32,6 @@ export class SecurityService {
     return this.userInfo.asObservable();
   }
 
-
-
-
-
   loginUser(username: String, pass: String): Observable<UserModel> {
     return this.http.post<UserModel>(`${this.url}/login?include=User`,
       {
@@ -51,29 +47,46 @@ export class SecurityService {
 
   saveLoginInfo(user: UserModel) {
     user.isLogged = true;
+    console.log("User Login to Save: " + JSON.stringify(user));
     this.userInfo.next(user);
     localStorage.setItem("activeUser", JSON.stringify(user));
   }
 
 
-  logoutUser() {
-    localStorage.removeItem("activeUser");
-    this.userInfo.next(new UserModel());
+  logoutUser(): Observable<boolean> {
+    let token = JSON.parse(localStorage.getItem("activeUser")).id;
+    //console.log("Token en logout: " + token + " - " + `${this.url}/logout?access_token=${token}`)
+    try {
+      this.http.post(`${this.url}/logout?access_token=${token}`, {
+        "access_token": token
+      },
+        {
+          headers: new HttpHeaders({
+            "content-type": "application/json"
+          })
+        });
+      console.log("Se llamó a logout");
+      localStorage.removeItem("activeUser");
+      this.userInfo.next(new UserModel());
+      return Observable.create(observer => { observer.next(true); });
+    } catch{
+      return Observable.create(observer => { observer.next(false); });
+    }
   }
-  registryUser(n: String, p: String, ln: String, e: String, ph: String): Observable<UserModel>{
+  registryUser(n: String, p: String, ln: String, e: String, ph: String): Observable<UserModel> {
     return this.http.post<UserModel>(`${this.url}`,
-    {
-      email: e,
-      password: p,
-      firstLastName: ln,
-      firstName: n,
-      phone:ph
+      {
+        email: e,
+        password: p,
+        firstLastName: ln,
+        firstName: n,
+        phone: ph
 
-    }, {
-    headers: new HttpHeaders({
-      "content-type": "application/json"
+      }, {
+      headers: new HttpHeaders({
+        "content-type": "application/json"
+      })
     })
-  })
 
   }
 }

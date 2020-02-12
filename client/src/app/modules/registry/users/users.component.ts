@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit {
       phone: ['', [Validators.required, Validators.minLength(7)]]
     });
   }
+  
   registryEvent() {
     if (this.fgValidation.invalid) {
       alert("Datos inválidos!!");

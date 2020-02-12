@@ -1,6 +1,6 @@
 {
-  "name": "country",
-  "plural": "countries",
+  "name": "department",
+  "plural": "departments",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -17,10 +17,10 @@
   },
   "validations": [],
   "relations": {
-    "country-cities": {
+    "department-cities": {
       "type": "hasMany",
       "model": "city",
-      "foreignKey": "_countryId",
+      "foreignKey": "_departmentId",
       "primaryKey": "_id",
       "options": {
         "nestRemoting": true

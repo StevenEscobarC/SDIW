@@ -39,7 +39,7 @@
     "dataSource": "db",
     "public": true
   },
-  "country": {
+  "department": {
     "dataSource": "db",
     "public": true
   },

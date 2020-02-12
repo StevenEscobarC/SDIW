@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
 
         if (data != null) {
           console.log(data);
+          this.secService.saveLoginInfo(data.user);
           this.router.navigate(['/home'])
-          this.secService.saveLoginInfo(data);
         } else {
           openPlatformModalMessage("¡La información no es valida!")
         }

@@ -12,8 +12,14 @@ export class LogoutComponent implements OnInit {
   constructor(private secService: SecurityService, private router: Router) { }
 
   ngOnInit() {
-    this.secService.logoutUser();
-    this.router.navigate(['/home']);
+    this.secService.logoutUser().subscribe(data => {
+      console.log("Respuesta logout: " + data);
+      if (data) {
+        this.router.navigate(['/home']);
+      }else{
+        alert("No se pudo cerrar la sesión.")
+      }
+    });
   }
 
 }

@@ -6,4 +6,5 @@ export class UserModel{
     email: String;
     phone: String;
     isLogged: boolean = false;
+    user?: UserModel;
 }

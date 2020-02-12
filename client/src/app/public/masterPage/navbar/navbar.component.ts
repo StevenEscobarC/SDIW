@@ -31,9 +31,11 @@ export class NavbarComponent implements OnInit {
     this.subscription = this.secService.getUserInfo().subscribe(user => {
 
       this.userInfo = user;
+      console.log("UserInfo: " + JSON.stringify(user))
       this.updateInfo();
       
     });
+    
   }
 
   updateInfo(){
@@ -41,6 +43,7 @@ export class NavbarComponent implements OnInit {
     this.userLogged = this.userInfo.isLogged;
     /**this.userName= this.http.get<UserModel>(`${this.url}`)*/
     this.userName = `${msg} ${this.userInfo.firstName} ${this.userInfo.firstLastName} `;
+    
 
   }
 

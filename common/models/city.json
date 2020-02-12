@@ -14,17 +14,17 @@
       "type": "string",
       "required": true
     },
-    "_countryId": {
+    "_departmentId": {
       "type": "string",
       "required": true
     }
   },
   "validations": [],
   "relations": {
-    "country-city": {
+    "department-city": {
       "type": "hasOne",
-      "model": "country",
-      "foreignKey": "_countryId",
+      "model": "department",
+      "foreignKey": "_departmentId",
       "primaryKey": "_id"
     }
   },
