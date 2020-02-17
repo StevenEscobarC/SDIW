@@ -17,21 +17,41 @@ export class PropertyComponent implements OnInit {
 
   fgValidationBuilder() {
     this.fgValidation = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      last_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40), Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
-      phone: ['', [Validators.required, Validators.minLength(7)]]
+      address: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]],
+      price: ['', [Validators.required]],
+      photography: ['', [Validators.required]]
     });
   }
 
 
   ngOnInit() {
     initMaterializeSelect()
+    this.fgValidationBuilder();
   }
 
   registryEvent(){
+    if (this.fgValidation.invalid) {
+      alert("Datos inválidos!!");
+    } else {
+      let a = this.fg.address.value;
+      let p = this.fg.price.value;
+      //let ln = this.fg.last_name.value;
+      //let e = this.fg.email.value;
+      let ph = this.fg.photography.value;
 
+
+      this.secService.registryProperty(a, p, ph).subscribe(data => {
+
+        if (data != null) {
+          console.log(data);
+          this.router.navigate(['/home'])
+        } 
+      });
+  }
+  }
+
+  get fg() {
+    return this.fgValidation.controls;
   }
 
 }

@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PropertyModel } from '../models/property.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
   url: String = "http://localhost:3000/api/Users"
+  url2: String = "http://localhost:3000/api/properties"
 
 
   userInfo = new BehaviorSubject<UserModel>(new UserModel());
@@ -81,6 +83,20 @@ export class SecurityService {
         firstLastName: ln,
         firstName: n,
         phone: ph
+
+      }, {
+      headers: new HttpHeaders({
+        "content-type": "application/json"
+      })
+    })
+
+  }
+  registryProperty(a: String, p: String, ph: String): Observable<PropertyModel> {
+    return this.http.post<PropertyModel>(`${this.url2}`,
+      {
+        address: a,
+        price: p,
+        photography: ph
 
       }, {
       headers: new HttpHeaders({

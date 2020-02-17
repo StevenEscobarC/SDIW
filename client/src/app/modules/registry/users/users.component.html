@@ -101,7 +101,7 @@
                 <div class="col s9">
 
                 </div>
-                <button 
+                <button [disabled]="fg.name.errors || fg.password.errors || fg.last_name.errors || fg.email.errors || fg.phone.errors"
                     class="btn waves-effect waves-light green" type="submit" name="action">Registrarse
                     
                 </button>

@@ -12,11 +12,11 @@
     },
     "department": {
       "type": "string",
-      "required": true
+      "required": false   
     },
     "city": {
       "type": "string",
-      "required": true
+      "required": false   
     },
     "address": {
       "type": "string",
@@ -28,15 +28,15 @@
     },
     "type": {
       "type": "number",
-      "required": true
+      "required": false   
     },
     "offerType": {
       "type": "boolean",
-      "required": true
+      "required": false   
     },
     "contactSeller": {
       "type": "string",
-      "required": true
+      "required": false   
     },
     "photography": {
       "type": "String"

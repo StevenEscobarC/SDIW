@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { UserModel } from 'src/app/models/user.model';
 import { SecurityService } from 'src/app/services/security.service';
 
 declare var openPlatformModalMessage: any;
