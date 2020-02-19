@@ -91,12 +91,14 @@ export class SecurityService {
     })
 
   }
-  registryProperty(a: String, p: String, ph: String): Observable<PropertyModel> {
+  registryProperty(a: String, p: String, ph: String, tp : string, tp2: string): Observable<PropertyModel> {
     return this.http.post<PropertyModel>(`${this.url2}`,
       {
         address: a,
         price: p,
-        photography: ph
+        photography: ph,
+        offerType: tp,
+        type: tp2 
 
       }, {
       headers: new HttpHeaders({

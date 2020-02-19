@@ -19,7 +19,9 @@ export class PropertyComponent implements OnInit {
     this.fgValidation = this.fb.group({
       address: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]],
       price: ['', [Validators.required]],
-      photography: ['', [Validators.required]]
+      photography: ['', [Validators.required]],
+      tipo:['',[Validators.required]],
+      tipo2:['',[Validators.required]]
     });
   }
 
@@ -35,12 +37,14 @@ export class PropertyComponent implements OnInit {
     } else {
       let a = this.fg.address.value;
       let p = this.fg.price.value;
+      let tp = this.fg.tipo.value;
+      let tp2 = this.fg.tipo2.value;
       //let ln = this.fg.last_name.value;
       //let e = this.fg.email.value;
       let ph = this.fg.photography.value;
 
 
-      this.secService.registryProperty(a, p, ph).subscribe(data => {
+      this.secService.registryProperty(a, p, ph, tp, tp2).subscribe(data => {
 
         if (data != null) {
           console.log(data);

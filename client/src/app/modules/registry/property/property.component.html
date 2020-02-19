@@ -4,7 +4,7 @@
         <form [formGroup]="fgValidation" (ngSubmit)="registryEvent()" class="col s12">
             <div class="input-field col s12 m6">
                 <select class="icons">
-                    <option value="" disabled selected>Selecciona el tipo de oferta</option>
+                    <option value="" disabled selected>Selecciona el departamento</option>
                     <option value="1" data-icon=.\assets\images\hand.png class="left">Alquilar</option>
                     <option value="2" data-icon=".\assets\images\key.png" class="left">Vender
                     </option>
@@ -13,7 +13,7 @@
             </div>
             <div class="input-field col s12 m6">
                 <select class="icons">
-                    <option value="" disabled selected>Selecciona el tipo de oferta</option>
+                    <option value="" disabled selected>Selecciona la ciudad</option>
                     <option value="" data-icon=.\assets\images\hand.png class="left">Alquilar</option>
                     <option value="" data-icon=".\assets\images\key.png" class="left">Vender
                     </option>
@@ -52,22 +52,21 @@
             </div>
             
             <div class="input-field col s12 m6">
-                <select id ="tipo"class="icons" formControlName="tipo">
+                <select id ="tipo"class="icons" formControlName="tipo" name="tipo">
                     <option value="" disabled selected>Selecciona el tipo de oferta</option>
                     <option value="1" data-icon=.\assets\images\hand.png class="left">Alquilar</option>
-                    <option value="2" data-icon=".\assets\images\key.png" class="left">Vender
-                    </option>
+                    <option value="2" data-icon=".\assets\images\key.png" class="left">Vender</option>
                 </select>
                 <label>Tipo de oferta</label>
             </div>
 
             <div class="input-field col s12 m6">
-                <select class="icons">
+                <select id ="tipo2"class="icons" formControlName="tipo2" name="tipo2">
                     <option value="" disabled selected>Selecciona el tipo de inmueble</option>
-                    <option value="" data-icon=.\assets\images\casa.jpg class="left">Casa</option>
-                    <option value="" data-icon=".\assets\images\apartamento.jpg" class="left">Apartamento
+                    <option value="1" data-icon=.\assets\images\casa.jpg class="left">Casa</option>
+                    <option value="2" data-icon=".\assets\images\apartamento.jpg" class="left">Apartamento
                     </option>
-                    <option value="" data-icon=".\assets\images\apartaestudio.jpg" class="left">Apartaestudio
+                    <option value="3" data-icon=".\assets\images\apartaestudio.jpg" class="left">Apartaestudio
                     </option>
                 </select>
                 <label>Tipo de inmueble</label>

@@ -31,8 +31,8 @@
       "required": false   
     },
     "offerType": {
-      "type": "boolean",
-      "required": false   
+      "type": "string",
+      "required": true   
     },
     "contactSeller": {
       "type": "string",
