@@ -20,7 +20,7 @@
     "department-cities": {
       "type": "hasMany",
       "model": "city",
-      "foreignKey": "_departmentId",
+      "foreignKey": "departmentId",
       "primaryKey": "_id",
       "options": {
         "nestRemoting": true

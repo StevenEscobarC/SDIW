@@ -36,7 +36,7 @@
     },
     "contactSeller": {
       "type": "string",
-      "required": false   
+      "required": true   
     },
     "photography": {
       "type": "String"

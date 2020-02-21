@@ -21,8 +21,12 @@
   },
   "validations": [],
   "relations": {
+    
+
+
+
     "department-city": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "department",
       "foreignKey": "_departmentId",
       "primaryKey": "_id"

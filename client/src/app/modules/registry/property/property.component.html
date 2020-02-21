@@ -3,20 +3,16 @@
     <div id="registry-page" class="row">
         <form [formGroup]="fgValidation" (ngSubmit)="registryEvent()" class="col s12">
             <div class="input-field col s12 m6">
-                <select class="icons">
-                    <option value="" disabled selected>Selecciona el departamento</option>
-                    <option value="1" data-icon=.\assets\images\hand.png class="left">Alquilar</option>
-                    <option value="2" data-icon=".\assets\images\key.png" class="left">Vender
-                    </option>
+                <select class="icons" formControlName="department" (change)="loadCitiesOfDepartment()">
+                    <option value="">Seleccione el departamento</option>
+                    <option *ngFor="let d of departmentList" value="{{d.name}}">{{d.name}}</option>
                 </select>
-                <label>Tipo de oferta</label>
+                <label>Departamento</label>     
             </div>
             <div class="input-field col s12 m6">
-                <select class="icons">
+                <select class="icons" formControlName="city">
                     <option value="" disabled selected>Selecciona la ciudad</option>
-                    <option value="" data-icon=.\assets\images\hand.png class="left">Alquilar</option>
-                    <option value="" data-icon=".\assets\images\key.png" class="left">Vender
-                    </option>
+                    <option *ngFor="let c of cityList" value="{{c.name}}">{{c.name}}</option>
                 </select>
                 <label>Tipo de oferta</label>
             </div>
