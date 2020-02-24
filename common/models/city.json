@@ -22,9 +22,6 @@
   "validations": [],
   "relations": {
     
-
-
-
     "department-city": {
       "type": "belongsTo",
       "model": "department",

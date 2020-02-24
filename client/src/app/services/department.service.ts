@@ -12,9 +12,24 @@ export class DepartmentService {
 
 
   }
-
+  loadAllDepartments2(){
+    return this.http.get<DepartmentModel[]>(`${this.url2}`)
+  }
   loadAllDepartments():Observable<DepartmentModel[]>{
     return this.http.get<DepartmentModel[]>(`${this.url2}`)
   }
+createDepartment(name:String):Observable<DepartmentModel>{
+  return this.http.post<DepartmentModel>(`${this.url2}`,
+  {
+    name:name
+
+  }, {
+  headers: new HttpHeaders({
+    "content-type": "application/json"
+  })
+})
 
 }
+
+}
+

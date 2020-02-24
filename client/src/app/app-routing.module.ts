@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'registry',
     loadChildren: './modules/registry/registry.module#RegistryModule'
+  },
+  {
+    path: 'department',
+    loadChildren: './modules/parameters/department-admin/department-admin.module#DepartmentAdminModule'
   }
   ,
   {
