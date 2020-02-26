@@ -21,7 +21,8 @@ export class DepartmentListComponent implements OnInit {
   }
 
   loadDepartments = () => {
-    this.departmentList = this.depService.loadAllDepartments();
+    this.depService.loadAllDepartments().subscribe(data => {
+      this.departmentList = data;
+    });
   }
-
 }
