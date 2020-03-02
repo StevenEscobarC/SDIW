@@ -30,12 +30,11 @@ export class DepartmentEditorComponent implements OnInit {
   }
 
   getDepartmentInfo(){
-    let dep = this.serDepartment.searchDepartment(this.code).subscribe(data => {
+    this.serDepartment.searchDepartment(this.code).subscribe(data => {
       if (data != null) {
-        console.log(data);
         this.fg.code.setValue(data.code);
         this.fg.name.setValue(data.name)
-        
+        data=null;
       }
     });
    
@@ -43,7 +42,6 @@ export class DepartmentEditorComponent implements OnInit {
 
   getCode() {
     this.code = this.route.snapshot.paramMap.get("id");
-    console.log(this.code);
   }
 
   departmentUpdate(){
@@ -52,11 +50,11 @@ export class DepartmentEditorComponent implements OnInit {
     } else {
       let n = this.fg.name.value;
       let c = this.fg.code.value;
+      
 
       this.serDepartment.updateDepartment(n,c,this.code).subscribe(data => {
         if (data != null) {
-          console.log(data);
-          this.router.navigate(['/home'])
+          this.router.navigate(['/department/department-list'])
         }
       })
     }

@@ -50,7 +50,7 @@ export class DepartmentService {
   }
 
   searchDepartment(id: String): Observable<DepartmentModel>{
-    return this.http.get<DepartmentModel>(`${this.url2}/findOne?filter=%7B%22id%22%3A%22${id}%22%7D`)
+    return this.http.get<DepartmentModel>(`${this.url2}/${id}`)
   }
 
 }

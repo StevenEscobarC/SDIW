@@ -29,6 +29,11 @@ const routes: Routes = [
   }
   ,
   {
+    path: 'city',
+    loadChildren: './modules/parameters/city-admin/city-admin.module#CityAdminModule'
+
+  },
+  {
     path:'**' ,
     component: PageNotFoundComponent
   }
