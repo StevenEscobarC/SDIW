@@ -21,7 +21,10 @@
                 {{d.name}}
             </td>
             <td>
-                <a routerLink="/department-editor/{{d.name}}" class="waves-effect waves-light btn orange">Edit
+                {{d.code}}
+            </td>
+            <td>
+                <a routerLink="/department/department-editor/{{d.id}}" class="waves-effect waves-light btn orange">Edit
                     <i class="material-icons right">edit</i>
                 </a>
             </td>

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DepartmentService } from 'src/app/services/department.service';
-import { DepartmentModel } from 'src/app/models/departmentModel.model';
+
 
 @Component({
   selector: 'app-department-creator',
@@ -20,7 +20,8 @@ export class DepartmentCreatorComponent implements OnInit {
 
   fgValidationBuilder() {
     this.fgValidation = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]]
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      code: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(6)]]
     });
   }
   ngOnInit() {
@@ -32,8 +33,9 @@ export class DepartmentCreatorComponent implements OnInit {
       alert("Datos inválidos!!");
     } else {
       let n = this.fg.name.value;
+      let c = this.fg.code.value;
 
-      this.serDepartment.createDepartment(n).subscribe(data => {
+      this.serDepartment.createDepartment(n,c).subscribe(data => {
         if (data != null) {
           console.log(data);
           this.router.navigate(['/home'])

@@ -6,19 +6,25 @@ import { DepartmentModel } from '../models/departmentModel.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DepartmentService {
   url2: String = "http://localhost:3000/api/departments"
+  
+  
   constructor(private http: HttpClient) {
 
 
   }
+
   loadAllDepartments(): Observable<DepartmentModel[]> {
     return this.http.get<DepartmentModel[]>(`${this.url2}`)
   }
-  createDepartment(name: String): Observable<DepartmentModel> {
+
+  createDepartment(name: String, code: String): Observable<DepartmentModel> {
     return this.http.post<DepartmentModel>(`${this.url2}`,
       {
-        name: name
+        name: name,
+        code: code
 
       }, {
       headers: new HttpHeaders({
@@ -26,6 +32,25 @@ export class DepartmentService {
       })
     })
 
+  }
+
+  updateDepartment(name: String, code: String, id: String): Observable<DepartmentModel> {
+    return this.http.post<DepartmentModel>(`${this.url2}/${id}/replace`,
+      {
+        name: name,
+        code: code,
+        
+
+      }, {
+      headers: new HttpHeaders({
+        "content-type": "application/json"
+      })
+    })
+
+  }
+
+  searchDepartment(id: String): Observable<DepartmentModel>{
+    return this.http.get<DepartmentModel>(`${this.url2}/findOne?filter=%7B%22id%22%3A%22${id}%22%7D`)
   }
 
 }
