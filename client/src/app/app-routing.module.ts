@@ -34,6 +34,10 @@ const routes: Routes = [
 
   },
   {
+    path: 'property',
+    loadChildren: './modules/parameters/property-user/property-user.module#PropertyUserModule'
+  },
+  {
     path:'**' ,
     component: PageNotFoundComponent
   }

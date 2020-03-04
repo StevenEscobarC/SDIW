@@ -21,6 +21,12 @@
   },
   "validations": [],
   "relations": {
+    "department-cities":{
+      "type": "hasMany",
+      "model": "department",
+      "foreignKey": "_departmentId",
+      "primaryKey": "_id"
+    }
   },
   "acls": [],
   "methods": {}

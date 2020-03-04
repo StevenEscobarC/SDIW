@@ -25,4 +25,6 @@ export class DepartmentListComponent implements OnInit {
       this.departmentList = data;
     });
   }
+
+  
 }

@@ -7,6 +7,7 @@
         <a href="#" data-target="mobile-inmobiliaria" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li *ngIf="!userLogged"><a routerLink="/security/login">Iniciar sesión</a></li>
+            <li *ngIf="userLogged"><a routerLink="/property/property-list">Mis publicaciones</a></li>
             <li *ngIf="userLogged"><a routerLink="/registry/property">Publicar propiedad</a></li>
             <li *ngIf="userLogged"><a routerLink="/department/department-list">Departamentos</a></li>
             <li *ngIf="userLogged"><a routerLink="/city/city-list">Ciudades</a></li>
@@ -19,6 +20,7 @@
 
 <ul class="sidenav" id="mobile-inmobiliaria">
     <li *ngIf="!userLogged"><a routerLink="/security/login">Iniciar sesión</a></li>
+    <li *ngIf="userLogged"><a routerLink="/property/property-list">Mis publicaciones</a></li>
     <li *ngIf="userLogged"><a routerLink="/registry/property">Publicar propiedad</a></li>
     <li *ngIf="userLogged"><a routerLink="/department/department-list">Departamentos</a></li>
     <li *ngIf="userLogged"><a routerLink="/city/city-list">Ciudades</a></li>

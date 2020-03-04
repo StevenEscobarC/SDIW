@@ -1,4 +1,5 @@
 export class PropertyModel{
+    _id?: String;
     department: String;
     city: String;
     address: String;

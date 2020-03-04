@@ -1,0 +1,63 @@
+<br />
+<table class="responsive-table">
+    <thead>
+        <tr>
+
+            <th>
+                Departamento
+            </th>
+            <th>
+                Ciudad
+            </th>
+            <th>
+                Dirección
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th>
+                Tipo de oferta
+            </th>
+            <th>
+                Foto
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of propertyList">
+
+            <td>
+                {{p.department}}
+            </td>
+            <td>
+                {{p.city}}
+            </td>
+            <td>
+                {{p.address}}
+            </td>
+            <td>
+                {{p.price}}
+            </td>
+            <td>
+                {{p.type}}
+            </td>
+            <td>
+                {{p.offertype}}
+            </td>
+            <td>
+                <img src="{{p.photography}}" style="width: 30%;" alt="image" class="square" /> 
+            </td>
+
+            <td>
+                <a routerLink="/property/property-editor/{{p.id}}" class="waves-effect waves-light btn orange">Editar
+                    <i class="material-icons right">edit</i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
