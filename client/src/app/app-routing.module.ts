@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './public/home/home.component';
 import { PageNotFoundComponent } from './public/page-not-found/page-not-found.component';
+import { AuthenticationRequiredGuard } from './helpers/guards/authentication-required.guard';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
     path: 'security',
     loadChildren: './modules/security/security.module#SecurityModule'
     
+    
   },
   {
     path: 'registry',
@@ -25,17 +27,20 @@ const routes: Routes = [
   },
   {
     path: 'department',
-    loadChildren: './modules/parameters/department-admin/department-admin.module#DepartmentAdminModule'
+    loadChildren: './modules/parameters/department-admin/department-admin.module#DepartmentAdminModule',
+    canActivate: [AuthenticationRequiredGuard]
   }
   ,
   {
     path: 'city',
-    loadChildren: './modules/parameters/city-admin/city-admin.module#CityAdminModule'
+    loadChildren: './modules/parameters/city-admin/city-admin.module#CityAdminModule',
+    canActivate: [AuthenticationRequiredGuard]
 
   },
   {
     path: 'property',
-    loadChildren: './modules/parameters/property-user/property-user.module#PropertyUserModule'
+    loadChildren: './modules/parameters/property-user/property-user.module#PropertyUserModule',
+    canActivate: [AuthenticationRequiredGuard]
   },
   {
     path:'**' ,

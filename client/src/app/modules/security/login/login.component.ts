@@ -37,14 +37,14 @@ export class LoginComponent implements OnInit {
     } else {
       let u = this.fg.username.value;
       let p = this.fg.password.value;
-      
+
       this.secService.loginUser(u, p).subscribe(data => {
 
         if (data != null) {
-          console.log(data);
+
           this.secService.saveLoginInfo(data.user);
           this.router.navigate(['/home'])
-        } 
+        }
       });
 
     }

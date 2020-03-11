@@ -25,6 +25,9 @@
                 Foto
             </th>
             <th>
+                Estado
+            </th>
+            <th>
                 Editar
             </th>
 
@@ -50,15 +53,18 @@
             <td>
                 {{p.type}}
             </td>
-          
+
 
             <td>
                 {{p.offerType}}
             </td>
-            <td>
-                <img src="{{p.photography}}" style="width: 30%;" alt="image" class="square" /> 
-            </td>
 
+            <td>
+                <img src="{{p.photography}}" style="width: 70%;" alt="image" class="square" />
+            </td>
+            <td>
+                {{p.status}}
+            </td>
             <td>
                 <a routerLink="/property/property-editor/{{p.id}}" class="waves-effect waves-light btn orange">Editar
                     <i class="material-icons right">edit</i>

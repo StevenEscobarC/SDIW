@@ -57,8 +57,8 @@ export class SecurityService {
 
   logoutUser(): Observable<boolean> {
     let token = JSON.parse(localStorage.getItem("activeUser")).id;
-    //console.log("Token en logout: " + token + " - " + `${this.url}/logout?access_token=${token}`)
     try {
+
       this.http.post(`${this.url}/logout?access_token=${token}`, {
         "access_token": token
       },
@@ -70,6 +70,7 @@ export class SecurityService {
       console.log("Se llamó a logout");
       localStorage.removeItem("activeUser");
       this.userInfo.next(new UserModel());
+      
       return Observable.create(observer => { observer.next(true); });
     } catch{
       return Observable.create(observer => { observer.next(false); });
@@ -91,7 +92,8 @@ export class SecurityService {
     })
 
   }
-  registryProperty(a: String, p: String, ph: String, tp : String, tp2: String, cs:String, dep: String, c: String): Observable<PropertyModel> {
+  registryProperty(a: String, p: String, ph: String, tp : String, 
+    tp2: String, cs:String, dep: String, c: String): Observable<PropertyModel> {
     return this.http.post<PropertyModel>(`${this.url2}`,
       {
         address: a,

@@ -12,11 +12,11 @@
     },
     "department": {
       "type": "string",
-      "required": false   
+      "required": true   
     },
     "city": {
       "type": "string",
-      "required": false   
+      "required": true   
     },
     "address": {
       "type": "string",
@@ -28,7 +28,7 @@
     },
     "type": {
       "type": "string",
-      "required": false   
+      "required": true   
     },
     "offerType": {
       "type": "string",
@@ -40,6 +40,10 @@
     },
     "photography": {
       "type": "String"
+    },
+    "status": {
+      "type": "String",
+      "default": "Disponible"
     }
   },
   "validations": [],

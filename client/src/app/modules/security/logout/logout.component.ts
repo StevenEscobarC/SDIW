@@ -15,6 +15,7 @@ export class LogoutComponent implements OnInit {
     this.secService.logoutUser().subscribe(data => {
       console.log("Respuesta logout: " + data);
       if (data) {
+        
         this.router.navigate(['/home']);
       }else{
         alert("No se pudo cerrar la sesión.")
