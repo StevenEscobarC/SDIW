@@ -13,6 +13,7 @@ export class PropertyListComponent implements OnInit {
   constructor(private serProperty: PropertyService) { }
 
   ngOnInit() {
+    this.loadMyProperties();
   }
 
   loadMyProperties(){

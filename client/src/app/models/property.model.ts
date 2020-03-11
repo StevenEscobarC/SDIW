@@ -4,8 +4,8 @@ export class PropertyModel{
     city: String;
     address: String;
     price: String;
-    type: number;
-    offertype: String;
+    type: string;
+    offerType: string;
     sellerName: String;
     contactSeller: String;
     photography: String;

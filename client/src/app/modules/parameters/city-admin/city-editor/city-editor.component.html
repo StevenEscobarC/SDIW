@@ -6,8 +6,7 @@
                 <div class="input-field col s8">
                     <input id="name" type="text" class="validate" formControlName="name">
                     <label for="name" data-error="wrong">Nombre</label>
-                    <div class="warning-validation"
-                        *ngIf="fg.name.errors && (fg.name.dirty || fg.name.touched)">
+                    <div class="warning-validation" *ngIf="fg.name.errors && (fg.name.dirty || fg.name.touched)">
                         <strong *ngIf="fg.name.errors.required">
                             Nombre requerido!<br />
                         </strong>
@@ -23,8 +22,7 @@
                 <div class="input-field col s2">
                     <input id="code" type="text" class="validate" formControlName="code">
                     <label for="code" data-error="wrong">Código</label>
-                    <div class="warning-validation"
-                        *ngIf="fg.code.errors && (fg.code.dirty || fg.code.touched)">
+                    <div class="warning-validation" *ngIf="fg.code.errors && (fg.code.dirty || fg.code.touched)">
                         <strong *ngIf="fg.code.errors.required">
                             Código requerido!<br />
                         </strong>
@@ -48,4 +46,3 @@
         </form>
     </div>
 </fieldset>
-

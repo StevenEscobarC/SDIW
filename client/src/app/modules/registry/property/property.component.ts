@@ -22,12 +22,13 @@ export class PropertyComponent implements OnInit {
   departmentList: DepartmentModel[];
   cityList: CityModel[];
   userInfo: UserModel;
+  depInfo: DepartmentModel;
   subscription: Subscription;
   fgValidation: FormGroup;
-  
-  
-  constructor(private fb: FormBuilder, private secService: SecurityService, private router: Router, 
-     http: HttpClient, private serDepartment: DepartmentService, private serCity: CityService) { }
+
+
+  constructor(private fb: FormBuilder, private secService: SecurityService, private router: Router,
+    http: HttpClient, private serDepartment: DepartmentService, private serCity: CityService) { }
 
   fgValidationBuilder() {
     this.fgValidation = this.fb.group({
@@ -36,8 +37,8 @@ export class PropertyComponent implements OnInit {
       photography: ['', [Validators.required]],
       tipo: ['', [Validators.required]],
       tipo2: ['', [Validators.required]],
-      department:['',[Validators.required]],
-      city:['',[Validators.required]]
+      department: ['', [Validators.required]],
+      city: ['', [Validators.required]]
     });
   }
 
@@ -46,9 +47,9 @@ export class PropertyComponent implements OnInit {
     this.fgValidationBuilder();
     this.verifyUserSession();
     this.loadAllDepartments();
-    
+
   }
-  
+
 
   registryEvent() {
     if (this.fgValidation.invalid) {
@@ -62,14 +63,21 @@ export class PropertyComponent implements OnInit {
       let cs = ` ${this.userInfo.firstName} ${this.userInfo.firstLastName} - ${this.userInfo.phone}`;
       let dep = this.fg.department.value;
       let c = this.fg.city.value;
+      
 
+      this.subscription = this.serDepartment.searchDepartment(dep).subscribe(data => {
 
-      this.secService.registryProperty(a, p, ph, tp, tp2,cs, dep, c).subscribe(data => {
+        this.depInfo = data;
+        setTimeout(() => {
+          this.secService.registryProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c).subscribe(data => {
 
-        if (data != null) {
-          console.log(data);
-          this.router.navigate(['/home'])
-        }
+            if (data != null) {
+              console.log(data);
+              this.router.navigate(['/property/property-list'])
+            }
+          });
+        }, 600);
+  
       });
     }
   }
@@ -82,19 +90,23 @@ export class PropertyComponent implements OnInit {
     });
   }
 
-  loadAllDepartments(){
-    this.subscription= this.serDepartment.loadAllDepartments().subscribe(data=>{
-      this.departmentList=data;
+  
+    
+  
+
+  loadAllDepartments() {
+    this.subscription = this.serDepartment.loadAllDepartments().subscribe(data => {
+      this.departmentList = data;
       setTimeout(() => {
         initMaterializeSelect()
       }, 500);
     })
   }
-  
+
   loadCitiesOfDepartment() {
     let department = this.fg.department.value;
-    this.subscription= this.serCity.loadAllCities().subscribe(data=>{
-      this.cityList=data;
+    this.subscription = this.serDepartment.loadCitiesOfDep(department).subscribe(data => {
+      this.cityList = data;
       setTimeout(() => {
         initMaterializeSelect()
       }, 600);

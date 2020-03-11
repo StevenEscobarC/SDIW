@@ -5,7 +5,7 @@
             <div class="input-field col s12 m6">
                 <select class="icons" formControlName="department" (change)="loadCitiesOfDepartment()">
                     <option value="">Seleccione el departamento</option>
-                    <option *ngFor="let d of departmentList" value="{{d.name}}">{{d.name}}</option>
+                    <option *ngFor="let d of departmentList" value="{{d.id}}">{{d.name}}</option>
                 </select>
                 <label>Departamento</label>     
             </div>
@@ -50,8 +50,8 @@
             <div class="input-field col s12 m6">
                 <select id ="tipo"class="icons" formControlName="tipo" name="tipo">
                     <option value="" disabled selected>Selecciona el tipo de oferta</option>
-                    <option value="1" data-icon=.\assets\images\hand.png class="left">Alquilar</option>
-                    <option value="2" data-icon=".\assets\images\key.png" class="left">Vender</option>
+                    <option value="Alquilar" data-icon=.\assets\images\hand.png class="left">Alquilar</option>
+                    <option value="Vender" data-icon=".\assets\images\key.png" class="left">Vender</option>
                 </select>
                 <label>Tipo de oferta</label>
             </div>
@@ -59,10 +59,10 @@
             <div class="input-field col s12 m6">
                 <select id ="tipo2"class="icons" formControlName="tipo2" name="tipo2">
                     <option value="" disabled selected>Selecciona el tipo de inmueble</option>
-                    <option value="1" data-icon=.\assets\images\casa.jpg class="left">Casa</option>
-                    <option value="2" data-icon=".\assets\images\apartamento.jpg" class="left">Apartamento
+                    <option value="Casa" data-icon=.\assets\images\casa.jpg class="left">Casa</option>
+                    <option value="Apartamento" data-icon=".\assets\images\apartamento.jpg" class="left">Apartamento
                     </option>
-                    <option value="3" data-icon=".\assets\images\apartaestudio.jpg" class="left">Apartaestudio
+                    <option value="Apartaestudio" data-icon=".\assets\images\apartaestudio.jpg" class="left">Apartaestudio
                     </option>
                 </select>
                 <label>Tipo de inmueble</label>
