@@ -8,6 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PropertyService {
   url: String = "http://localhost:3000/api/properties"
+  urlOT :string="http://localhost:3000/api/properties?filter=%7B%22where%22%3A%7B%22offerType%22%3A%22"
+  urlT :string="http://localhost:3000/api/properties?filter=%7B%22where%22%3A%7B%22type%22%3A%22"
 
   constructor(private http: HttpClient) { }
 
@@ -41,5 +43,17 @@ export class PropertyService {
       })
     })
 
+  }
+
+  loadPropertiesByType(tipo: String):Observable<PropertyModel[]>{
+    
+    return this.http.get<PropertyModel[]>(`${this.urlOT}${tipo}%22%7D%7D`)
+    
+  }
+
+  loadPropertiesByType2(tipo2: String):Observable<PropertyModel[]>{
+    console.log(tipo2)
+    return this.http.get<PropertyModel[]>(`${this.urlT}${tipo2}%22%7D%7D`)
+    
   }
 }

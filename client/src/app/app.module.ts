@@ -8,6 +8,9 @@ import { NavbarComponent } from './public/masterPage/navbar/navbar.component';
 import { HomeComponent } from './public/home/home.component';
 import { PageNotFoundComponent } from './public/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
+import { SelectPipe } from './select.pipe';
 
 @NgModule({
   declarations: [
@@ -16,12 +19,16 @@ import { HttpClientModule } from '@angular/common/http'
     HeroComponent,
     NavbarComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FilterPipe,
+    SelectPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

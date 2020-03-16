@@ -46,5 +46,9 @@
   "city": {
     "dataSource": "db",
     "public": true
+  },
+  "propertyType": {
+    "dataSource": "db",
+    "public": true
   }
 }

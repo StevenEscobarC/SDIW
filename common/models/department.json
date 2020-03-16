@@ -21,7 +21,7 @@
   },
   "validations": [],
   "relations": {
-    "department-cities":{
+    "department-cities": {
       "type": "hasMany",
       "model": "department",
       "foreignKey": "_departmentId",

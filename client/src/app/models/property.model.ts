@@ -9,6 +9,7 @@ export class PropertyModel{
     sellerName: String;
     contactSeller: String;
     photography: String;
+    description: String;
     status?: String;
     property?: PropertyModel;
 }

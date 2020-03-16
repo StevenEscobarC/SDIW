@@ -43,6 +43,17 @@ const routes: Routes = [
     canActivate: [AuthenticationRequiredGuard]
   },
   {
+    path: 'type',
+    loadChildren: './modules/parameters/property-types/property-types.module#PropertyTypesModule',
+    canActivate: [AuthenticationRequiredGuard]
+  },
+  {
+    path: 'adviser',
+    loadChildren: './modules/parameters/adviser/adviser.module#AdviserModule',
+    canActivate: [AuthenticationRequiredGuard]
+  }
+  ,
+  {
     path:'**' ,
     component: PageNotFoundComponent
   }

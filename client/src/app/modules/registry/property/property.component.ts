@@ -9,6 +9,8 @@ import { DepartmentService } from 'src/app/services/department.service';
 import { DepartmentModel } from 'src/app/models/departmentModel.model';
 import { CityService } from 'src/app/services/city.service';
 import { CityModel } from 'src/app/models/cityModel.model';
+import { TypeModel } from 'src/app/models/typeModel.model';
+import { PropertyTypeService } from 'src/app/services/property-type.service';
 
 
 declare var initMaterializeSelect: any;
@@ -21,6 +23,7 @@ declare var initMaterializeSelect: any;
 export class PropertyComponent implements OnInit {
   departmentList: DepartmentModel[];
   cityList: CityModel[];
+  typeList: TypeModel[];
   userInfo: UserModel;
   depInfo: DepartmentModel;
   subscription: Subscription;
@@ -28,7 +31,7 @@ export class PropertyComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private secService: SecurityService, private router: Router,
-    http: HttpClient, private serDepartment: DepartmentService, private serCity: CityService) { }
+    private serDepartment: DepartmentService, private serCity: CityService, private serType: PropertyTypeService) { }
 
   fgValidationBuilder() {
     this.fgValidation = this.fb.group({
@@ -38,7 +41,9 @@ export class PropertyComponent implements OnInit {
       tipo: ['', [Validators.required]],
       tipo2: ['', [Validators.required]],
       department: ['', [Validators.required]],
-      city: ['', [Validators.required]]
+      city: ['', [Validators.required]],
+      description: ['', [Validators.required]]
+
     });
   }
 
@@ -47,7 +52,7 @@ export class PropertyComponent implements OnInit {
     this.fgValidationBuilder();
     this.verifyUserSession();
     this.loadAllDepartments();
-
+    this.loadAllType();
   }
 
 
@@ -63,13 +68,13 @@ export class PropertyComponent implements OnInit {
       let cs = ` ${this.userInfo.firstName} ${this.userInfo.firstLastName} - ${this.userInfo.phone}`;
       let dep = this.fg.department.value;
       let c = this.fg.city.value;
-      
+      let des = this.fg.description.value;
 
       this.subscription = this.serDepartment.searchDepartment(dep).subscribe(data => {
 
         this.depInfo = data;
         setTimeout(() => {
-          this.secService.registryProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c).subscribe(data => {
+          this.secService.registryProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c, des).subscribe(data => {
 
             if (data != null) {
               console.log(data);
@@ -77,7 +82,7 @@ export class PropertyComponent implements OnInit {
             }
           });
         }, 600);
-  
+
       });
     }
   }
@@ -90,9 +95,16 @@ export class PropertyComponent implements OnInit {
     });
   }
 
-  
-    
-  
+  loadAllType() {
+    this.subscription = this.serType.loadAllTypes().subscribe(data => {
+      this.typeList = data;
+      setTimeout(() => {
+        initMaterializeSelect()
+      }, 500);
+    })
+  }
+
+
 
   loadAllDepartments() {
     this.subscription = this.serDepartment.loadAllDepartments().subscribe(data => {

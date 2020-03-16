@@ -54,7 +54,6 @@ export class DepartmentService {
   }
 
   searchDepartment(id: String): Observable<DepartmentModel>{
-    console.log(id)
     return this.http.get<DepartmentModel>(`${this.url2}/${id}`)
   }
 

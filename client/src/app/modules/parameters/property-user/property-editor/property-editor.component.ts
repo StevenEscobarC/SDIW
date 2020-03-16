@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 import { UserModel } from 'src/app/models/user.model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { DepartmentModel } from 'src/app/models/departmentModel.model';
-import { CityService } from 'src/app/services/city.service';
 import { CityModel } from 'src/app/models/cityModel.model';
 import { PropertyService } from 'src/app/services/property.service';
 
@@ -29,8 +28,8 @@ export class PropertyEditorComponent implements OnInit {
   code: String;
 
 
-  constructor(private route: ActivatedRoute,private fb: FormBuilder, private secService: SecurityService, private router: Router,
-    http: HttpClient, private serDepartment: DepartmentService, private serProperty: PropertyService) { }
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private secService: SecurityService, private router: Router,
+    private serDepartment: DepartmentService, private serProperty: PropertyService) { }
 
   fgValidationBuilder() {
     this.fgValidation = this.fb.group({
@@ -67,13 +66,13 @@ export class PropertyEditorComponent implements OnInit {
       let cs = ` ${this.userInfo.firstName} ${this.userInfo.firstLastName} - ${this.userInfo.phone}`;
       let dep = this.fg.department.value;
       let c = this.fg.city.value;
-      
+
 
       this.subscription = this.serDepartment.searchDepartment(dep).subscribe(data => {
 
         this.depInfo = data;
         setTimeout(() => {
-          this.serProperty.updateProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c,this.code).subscribe(data => {
+          this.serProperty.updateProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c, this.code).subscribe(data => {
 
             if (data != null) {
               console.log(data);
@@ -81,7 +80,7 @@ export class PropertyEditorComponent implements OnInit {
             }
           });
         }, 600);
-  
+
       });
     }
   }
@@ -104,7 +103,7 @@ export class PropertyEditorComponent implements OnInit {
         this.fg.tipo2.setValue(data.offerType);
         this.fg.department.setValue(data.department);
         this.fg.city.setValue(data.city);
-        
+
 
       }
     });
@@ -115,9 +114,9 @@ export class PropertyEditorComponent implements OnInit {
     this.code = this.route.snapshot.paramMap.get("id");
   }
 
-  
-    
-  
+
+
+
 
   loadAllDepartments() {
     this.subscription = this.serDepartment.loadAllDepartments().subscribe(data => {

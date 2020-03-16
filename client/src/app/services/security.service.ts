@@ -10,7 +10,7 @@ import { PropertyModel } from '../models/property.model';
 export class SecurityService {
   url: String = "http://localhost:3000/api/Users"
   url2: String = "http://localhost:3000/api/properties"
-
+  urlA:String = "http://localhost:3000/api/Users?filter=%7B%22where%22%3A%7B%22rol%22%3A%222%22%7D%7D"
 
   userInfo = new BehaviorSubject<UserModel>(new UserModel());
 
@@ -18,6 +18,52 @@ export class SecurityService {
     this.verifyUserInSession();
   }
 
+  
+  searchAdviser(id: String): Observable<UserModel>{
+    return this.http.get<UserModel>(`${this.url}/${id}`)
+  }
+
+  updateAdviser(n: String, p: String, ln: String, e: String, ph: String, id: String): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.url}/${id}/replace`,
+      {
+        email: e,
+        password: p,
+        firstLastName: ln,
+        firstName: n,
+        phone: ph,
+        rol:2
+
+      }, {
+      headers: new HttpHeaders({
+        "content-type": "application/json"
+      })
+    })
+
+  }
+
+  registryAdviser(n: String, p: String, ln: String, e: String, ph: String): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.url}`,
+      {
+        email: e,
+        password: p,
+        firstLastName: ln,
+        firstName: n,
+        phone: ph,
+        rol:2
+
+      }, {
+      headers: new HttpHeaders({
+        "content-type": "application/json"
+      })
+    })
+
+  }
+
+
+  loadAdvisers(){
+    return this.http.get<UserModel[]>(`${this.urlA}`)
+
+  }
   verifyUserInSession() {
     let session = localStorage.getItem("activeUser");
     if (session != undefined) {
@@ -70,7 +116,7 @@ export class SecurityService {
       console.log("Se llamó a logout");
       localStorage.removeItem("activeUser");
       this.userInfo.next(new UserModel());
-      
+
       return Observable.create(observer => { observer.next(true); });
     } catch{
       return Observable.create(observer => { observer.next(false); });
@@ -92,8 +138,8 @@ export class SecurityService {
     })
 
   }
-  registryProperty(a: String, p: String, ph: String, tp : String, 
-    tp2: String, cs:String, dep: String, c: String): Observable<PropertyModel> {
+  registryProperty(a: String, p: String, ph: String, tp: String,
+    tp2: String, cs: String, dep: String, c: String, des: String): Observable<PropertyModel> {
     return this.http.post<PropertyModel>(`${this.url2}`,
       {
         address: a,
@@ -103,7 +149,8 @@ export class SecurityService {
         type: tp2,
         contactSeller: cs,
         department: dep,
-        city: c
+        city: c,
+        description: des
 
       }, {
       headers: new HttpHeaders({

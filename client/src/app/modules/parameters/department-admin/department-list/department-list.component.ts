@@ -10,7 +10,6 @@ declare var openConfirmationModal: any;
   styleUrls: ['./department-list.component.css']
 })
 export class DepartmentListComponent implements OnInit {
-  p: number = 1;
   departmentList: DepartmentModel[] = [];
   codeToRemove: String;
 

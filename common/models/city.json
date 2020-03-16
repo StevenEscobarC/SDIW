@@ -18,7 +18,6 @@
       "type": "string",
       "required": true
     },
-    
     "_departmentName": {
       "type": "string"
     },
@@ -29,7 +28,7 @@
   },
   "validations": [],
   "relations": {
-    "department-city":{
+    "department-city": {
       "type": "hasOne",
       "model": "department",
       "foreignKey": "_departmentId",
