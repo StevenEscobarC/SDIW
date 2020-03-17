@@ -1,16 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'selectOT'
+  name: 'selectRequestDep'
 })
-export class SelectOTPipe implements PipeTransform {
+export class SelectRequestDepPipe implements PipeTransform {
 
-  
   transform(item: any, arg: any): any {
     if (arg === '') return item;
     const resultPost = [];
     for (const post of item) {
-      if ((post.offerType.toLowerCase().indexOf(arg.toLowerCase()) > -1)) {
+      if ((post.property.department.toLowerCase().indexOf(arg.toLowerCase()) > -1)) {
         resultPost.push(post);
       };
     };

@@ -9,9 +9,8 @@ import { HomeComponent } from './public/home/home.component';
 import { PageNotFoundComponent } from './public/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe } from './filter.pipe';
-import { SelectPipe } from './select.pipe';
-import { SelectOTPipe } from './select-ot.pipe';
+import { SharedModuleModule } from './modules/shared-module/shared-module.module';
+
 
 
 
@@ -22,19 +21,18 @@ import { SelectOTPipe } from './select-ot.pipe';
     HeroComponent,
     NavbarComponent,
     HomeComponent,
-    PageNotFoundComponent,
-    FilterPipe,
-    SelectPipe,
-    SelectOTPipe
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModuleModule
   ],
   providers: [],
+  exports:  [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

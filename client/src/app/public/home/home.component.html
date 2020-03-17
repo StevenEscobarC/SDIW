@@ -62,7 +62,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of propertyList |  filter:searchText | select:filterType | selectOT: filterOT">
+        <tr *ngFor="let p of propertyList   |  filter:searchText | select:filterType | selectOT: filterOT ">
 
             <td>
                 {{p.department}}
@@ -101,3 +101,4 @@
 
     </tbody>
 </table>
+

@@ -22,7 +22,7 @@ declare var initMaterializeSelect: any;
 })
 export class HomeComponent implements OnInit {
 
-
+  p: number = 1;
   departmentList: DepartmentModel[];
   cityList: CityModel[];
   typeList: TypeModel[];
