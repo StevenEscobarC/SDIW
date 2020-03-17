@@ -9,6 +9,7 @@ import { DepartmentService } from 'src/app/services/department.service';
 import { DepartmentModel } from 'src/app/models/departmentModel.model';
 import { CityModel } from 'src/app/models/cityModel.model';
 import { PropertyService } from 'src/app/services/property.service';
+import { PropertyModel } from 'src/app/models/property.model';
 
 declare var initMaterializeSelect: any;
 
@@ -26,6 +27,7 @@ export class PropertyEditorComponent implements OnInit {
   subscription: Subscription;
   fgValidation: FormGroup;
   code: String;
+  propertyInfo: PropertyModel;
 
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private secService: SecurityService, private router: Router,
@@ -39,7 +41,8 @@ export class PropertyEditorComponent implements OnInit {
       tipo: ['', [Validators.required]],
       tipo2: ['', [Validators.required]],
       department: ['', [Validators.required]],
-      city: ['', [Validators.required]]
+      city: ['', [Validators.required]],
+      description:['',[Validators.required]]
     });
   }
 
@@ -63,16 +66,17 @@ export class PropertyEditorComponent implements OnInit {
       let tp = this.fg.tipo.value;
       let tp2 = this.fg.tipo2.value;
       let ph = this.fg.photography.value;
-      let cs = ` ${this.userInfo.firstName} ${this.userInfo.firstLastName} - ${this.userInfo.phone}`;
+      let cs = ` ${this.userInfo.email}`;
       let dep = this.fg.department.value;
       let c = this.fg.city.value;
+      let des= this.fg.description.value;
 
 
-      this.subscription = this.serDepartment.searchDepartment(dep).subscribe(data => {
+      this.subscription = this.serProperty.searchProperty(dep).subscribe(data => {
 
-        this.depInfo = data;
+        this.propertyInfo = data;
         setTimeout(() => {
-          this.serProperty.updateProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c, this.code).subscribe(data => {
+          this.serProperty.updateProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c, this.code, des).subscribe(data => {
 
             if (data != null) {
               this.router.navigate(['/property/property-list'])
@@ -102,7 +106,7 @@ export class PropertyEditorComponent implements OnInit {
         this.fg.tipo2.setValue(data.offerType);
         this.fg.department.setValue(data.department);
         this.fg.city.setValue(data.city);
-
+        this.fg.description.setValue(data.description);
 
       }
     });

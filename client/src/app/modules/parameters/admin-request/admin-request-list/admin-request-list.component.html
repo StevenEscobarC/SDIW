@@ -65,7 +65,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let r of requestList | selectRequest:filterType | selectRequestOT: filterOT | selectRequestDep:filterDep | selectRequestCity: filterCity">
+        <tr *ngFor="let r of requestList | selectRequest:filterType |
+         selectRequestOT: filterOT | selectRequestDep:filterDep | selectRequestCity: filterCity">
 
             <td>
                 {{r.id}}
@@ -86,13 +87,16 @@
                 {{r.status}}
             </td>
             <td>
-                <button data-target="modal1" class="btn waves-effect waves-light blue" type="button"
-                    name="action">Detalles
-                </button>
+                
+                <button data-target="modal1" class="btn modal-trigger">Modal</button>
+      
+
             </td>
         </tr>
     </tbody>
 </table>
+
+
 <div id="modalConfirmation" class="modal">
     <div class="modal-content">
         <h4>Confirmation Window</h4>

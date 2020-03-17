@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './public/page-not-found/page-not-found.co
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModuleModule } from './modules/shared-module/shared-module.module';
+import { RecaptchaComponent, RecaptchaModule } from 'angular-google-recaptcha';
 
 
 
@@ -29,7 +30,10 @@ import { SharedModuleModule } from './modules/shared-module/shared-module.module
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModuleModule
+    SharedModuleModule,
+    RecaptchaModule.forRoot({
+      siteKey: '6Le9W-AUAAAAAJOG2SmjB0CgG2mn3Qgjycy4ziMD',
+  }),
   ],
   providers: [],
   exports:  [],

@@ -30,7 +30,7 @@ export class PropertyService {
 
   
   updateProperty(a: String, p: String, ph: String, tp : String, 
-    tp2: String, cs:String, dep: String, c: String,id:String): Observable<PropertyModel> {
+    tp2: String, cs:String, dep: String, c: String,id:String,des:string): Observable<PropertyModel> {
     return this.http.post<PropertyModel>(`${this.url}/${id}/replace`,
       {
         address: a,
@@ -40,7 +40,8 @@ export class PropertyService {
         type: tp2,
         contactSeller: cs,
         department: dep,
-        city: c
+        city: c,
+        description:des
 
 
       }, {

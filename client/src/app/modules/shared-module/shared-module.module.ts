@@ -11,10 +11,12 @@ import { SelectRequestCityPipe } from 'src/app/select-request-city.pipe';
 
 
 @NgModule({
-  declarations: [SelectOTPipe, SelectPipe, FilterPipe, SelectRequestOTPipe, SelectRequestPipe, SelectRequestDepPipe, SelectRequestCityPipe ],
+  declarations: [SelectOTPipe, SelectPipe, FilterPipe, SelectRequestOTPipe, 
+    SelectRequestPipe, SelectRequestDepPipe, SelectRequestCityPipe ],
   imports: [
     CommonModule
   ],
-  exports:      [ SelectOTPipe, SelectPipe, FilterPipe, SelectRequestOTPipe, SelectRequestPipe, SelectRequestDepPipe, SelectRequestCityPipe ]
+  exports:      [ SelectOTPipe, SelectPipe, FilterPipe, SelectRequestOTPipe,
+     SelectRequestPipe, SelectRequestDepPipe, SelectRequestCityPipe ]
 })
 export class SharedModuleModule { }

@@ -68,7 +68,17 @@
                 <label>Tipo de inmueble</label>
             </div>
 
-
+            
+            <div class="input-field col s12">
+                <textarea id="textarea1" formControlName="description" class="materialize-textarea"></textarea>
+                <label for="textarea1">Descripción</label>
+                <div class="warning-validation"
+                    *ngIf="fg.description.errors && (fg.description.dirty || fg.description.touched)">
+                    <strong *ngIf="fg.description.errors.required">
+                        Descripción requerida!<br />
+                    </strong>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col s4">

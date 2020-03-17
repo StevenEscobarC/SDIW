@@ -50,17 +50,19 @@
                     </div>
                 </div>
             </div>
-            <div class="g-recaptcha" data-sitekey="6Le9W-AUAAAAAJOG2SmjB0CgG2mn3Qgjycy4ziMD"></div><br /><br />
+
+
+
             <div class="row">
                 <div class="input-field col s12">
-                    <button [disabled]="fg.username.errors || fg.password.errors"
+                    <button [disabled]="fg.username.errors || fg.password.errors  "
                         class="btn waves-effect waves-light green col s12" type="submit">Iniciar sesión
                     </button>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6 m6 l6">
-                    <p class="margin left-align medium-small"><a href="#">Registrate ahora!</a></p>
+                    <p class="margin left-align medium-small"><a href="/registry/users">Registrate ahora!</a></p>
                 </div>
                 <div class="input-field col s6 m6 l6">
                     <p class="margin right-align medium-small"><a href="#">Olvidaste la contraseña?</a></p>

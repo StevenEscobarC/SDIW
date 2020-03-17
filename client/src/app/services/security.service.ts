@@ -10,7 +10,7 @@ import { PropertyModel } from '../models/property.model';
 export class SecurityService {
   url: String = "http://localhost:3000/api/Users"
   url2: String = "http://localhost:3000/api/properties"
-  urlA:String = "http://localhost:3000/api/Users?filter=%7B%22where%22%3A%7B%22rol%22%3A%222%22%7D%7D"
+  urlA: String = "http://localhost:3000/api/Users?filter=%7B%22where%22%3A%7B%22rol%22%3A%222%22%7D%7D"
 
   userInfo = new BehaviorSubject<UserModel>(new UserModel());
 
@@ -18,8 +18,8 @@ export class SecurityService {
     this.verifyUserInSession();
   }
 
-  
-  searchAdviser(id: String): Observable<UserModel>{
+
+  searchAdviser(id: String): Observable<UserModel> {
     return this.http.get<UserModel>(`${this.url}/${id}`)
   }
 
@@ -31,7 +31,7 @@ export class SecurityService {
         firstLastName: ln,
         firstName: n,
         phone: ph,
-        rol:2
+        rol: 2
 
       }, {
       headers: new HttpHeaders({
@@ -49,7 +49,25 @@ export class SecurityService {
         firstLastName: ln,
         firstName: n,
         phone: ph,
-        rol:2
+        rol: 2
+
+      }, {
+      headers: new HttpHeaders({
+        "content-type": "application/json"
+      })
+    })
+
+  }
+
+  registryAdmin(n: String, p: String, ln: String, e: String, ph: String): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.url}`,
+      {
+        email: e,
+        password: p,
+        firstLastName: ln,
+        firstName: n,
+        phone: ph,
+        rol: 3
 
       }, {
       headers: new HttpHeaders({
@@ -60,7 +78,7 @@ export class SecurityService {
   }
 
 
-  loadAdvisers(){
+  loadAdvisers() {
     return this.http.get<UserModel[]>(`${this.urlA}`)
 
   }
@@ -75,22 +93,33 @@ export class SecurityService {
     return this.userInfo.getValue().isLogged;
   }
 
+  getRol(){
+    return this.userInfo.value.rol;
+  }
+
 
   getUserInfo() {
     return this.userInfo.asObservable();
   }
 
   loginUser(username: String, pass: String): Observable<UserModel> {
-    return this.http.post<UserModel>(`${this.url}/login?include=User`,
-      {
-        email: username,
-        password: pass
+    try {
 
-      }, {
-      headers: new HttpHeaders({
-        "content-type": "application/json"
+      return this.http.post<UserModel>(`${this.url}/login?include=User`,
+        {
+          email: username,
+          password: pass
+
+        }, {
+        headers: new HttpHeaders({
+          "content-type": "application/json"
+        })
       })
-    })
+    } catch (error) {
+      return null;
+    }
+
+
   }
 
   saveLoginInfo(user: UserModel) {
@@ -128,7 +157,7 @@ export class SecurityService {
         firstLastName: ln,
         firstName: n,
         phone: ph,
-        rol:1
+        rol: 1
 
       }, {
       headers: new HttpHeaders({

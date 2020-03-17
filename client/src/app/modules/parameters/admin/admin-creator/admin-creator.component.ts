@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SecurityService } from 'src/app/services/security.service';
 import { Router } from '@angular/router';
 import { PropertyTypeService } from 'src/app/services/property-type.service';
 
 declare var openPlatformModalMessage: any;
 @Component({
-  selector: 'app-adviser-creator',
-  templateUrl: './adviser-creator.component.html',
-  styleUrls: ['./adviser-creator.component.css']
+  selector: 'app-admin-creator',
+  templateUrl: './admin-creator.component.html',
+  styleUrls: ['./admin-creator.component.css']
 })
-export class AdviserCreatorComponent implements OnInit {
+export class AdminCreatorComponent implements OnInit {
 
   fgValidation: FormGroup;
 
-  constructor(private fb: FormBuilder, private secService: SecurityService,
-    private router: Router, private serType: PropertyTypeService) { }
+  constructor(private fb: FormBuilder, private secService: SecurityService
+    , private router: Router, private serType: PropertyTypeService) { }
 
   fgValidationBuilder() {
     this.fgValidation = this.fb.group({
@@ -27,7 +27,7 @@ export class AdviserCreatorComponent implements OnInit {
     });
   }
 
-  adviserEvent() {
+  registryEvent() {
     if (this.fgValidation.invalid) {
       alert("Datos inválidos!!");
     } else {
@@ -38,18 +38,19 @@ export class AdviserCreatorComponent implements OnInit {
       let ph = this.fg.phone.value;
 
 
-      this.secService.registryAdviser(n, p, ln, e, ph).subscribe(data => {
+      this.secService.registryAdmin(n, p, ln, e, ph).subscribe(data => {
 
         if (data != null) {
-          this.serType.sendEmailAdviser(data,p).subscribe(data => {
+          
+          this.secService.saveLoginInfo(data);
+          this.serType.sendEmailAdviser(data, p).subscribe(data => {
             if (data != null) {
-              this.router.navigate(['/adviser/adviser-list'])
+              this.router.navigate(['/home'])
+              
             }
-          })
-
-        } else {
-          openPlatformModalMessage("¡La información no es valida!")
-        }
+          });
+         
+        } 
       });
     }
   }
@@ -61,4 +62,3 @@ export class AdviserCreatorComponent implements OnInit {
   }
 
 }
-
