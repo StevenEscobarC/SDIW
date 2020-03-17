@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyModel } from 'src/app/models/property.model';
 import { PropertyService } from 'src/app/services/property.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { DepartmentService } from 'src/app/services/department.service';
 import { DepartmentModel } from 'src/app/models/departmentModel.model';
 import { CityModel } from 'src/app/models/cityModel.model';
+import { PropertyTypeService } from 'src/app/services/property-type.service';
+import { TypeModel } from 'src/app/models/typeModel.model';
+import { UserModel } from 'src/app/models/user.model';
+import { RequestService } from 'src/app/services/request.service';
+import { SecurityService } from 'src/app/services/security.service';
+import { Router } from '@angular/router';
 
 
 
@@ -21,68 +25,58 @@ export class HomeComponent implements OnInit {
 
   departmentList: DepartmentModel[];
   cityList: CityModel[];
+  typeList: TypeModel[];
+  userInfo: UserModel;
   subscription: Subscription;
-  fgValidation: FormGroup;
   propertyList: PropertyModel[] = [];
-  filterPostRequest="";
-  filterPostProperty="";
-  constructor(private serDepartment: DepartmentService, private fb: FormBuilder, private serProperty: PropertyService) { }
+  filterType = "";
+  filterOT = "";
+  constructor(private serProperty: PropertyService, private secService: SecurityService, private router: Router,
+    private serType: PropertyTypeService, private serRequest: RequestService) { }
 
-  fgValidationBuilder() {
-    this.fgValidation = this.fb.group({
-      tipo: ['', []],
-      tipo2: ['', []],
-      department: ['', [Validators.required]],
-      city: ['', [Validators.required]]
-    });
-  }
 
-  filterType() {
-    this.serProperty.loadPropertiesByType(this.fg.tipo.value).subscribe(data => {
-      this.propertyList = data;
-      
-    });
-  }
-
-  filterType2() {
-    this.serProperty.loadPropertiesByType2(this.fg.tipo2.value).subscribe(data => {
-      this.propertyList = data;
-    });
-  }
 
   ngOnInit() {
-    this.fgValidationBuilder();
-    this.loadMyProperties();
-    this.loadAllDepartments();
+    this.verifyUserSession();
+    this.loadProperties();
+    this.loadAllType();
   }
 
-  loadMyProperties() {
-    this.serProperty.loadAllMyProperties().subscribe(data => {
+  loadProperties() {
+    this.serProperty.loadAllProperties().subscribe(data => {
       this.propertyList = data;
     });
   }
 
-  loadAllDepartments() {
-    this.subscription = this.serDepartment.loadAllDepartments().subscribe(data => {
-      this.departmentList = data;
+  sendRequest(property: PropertyModel) {
+    this.serRequest.createRequest(property, this.userInfo.email).subscribe(data => {
+      if (data != null) {
+        this.serType.sendEmail(this.userInfo, property).subscribe(data => {
+          if (data != null) {
+
+            this.router.navigate(['/request/request-list'])
+          }
+        });
+      }
+    })
+  }
+
+
+  loadAllType() {
+    this.subscription = this.serType.loadAllTypes().subscribe(data => {
+      this.typeList = data;
       setTimeout(() => {
         initMaterializeSelect()
       }, 500);
     })
   }
+  verifyUserSession() {
+    this.subscription = this.secService.getUserInfo().subscribe(user => {
 
-  loadCitiesOfDepartment() {
-    let department = this.fg.department.value;
-    this.subscription = this.serDepartment.loadCitiesOfDep(department).subscribe(data => {
-      this.cityList = data;
-      setTimeout(() => {
-        initMaterializeSelect()
-      }, 600);
-    })
+      this.userInfo = user;
 
-  }
 
-  get fg() {
-    return this.fgValidation.controls;
+    });
+
   }
 }

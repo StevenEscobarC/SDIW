@@ -14,7 +14,6 @@ export class TypeListComponent implements OnInit {
 
   ngOnInit() {
     this.loadTypes();
-    console.log(this.typeList)
   }
 
   loadTypes = () => {

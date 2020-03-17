@@ -37,7 +37,6 @@ export class DepartmentCreatorComponent implements OnInit {
 
       this.serDepartment.createDepartment(n,c).subscribe(data => {
         if (data != null) {
-          console.log(data);
           this.router.navigate(['/department/department-list'])
         }
       })

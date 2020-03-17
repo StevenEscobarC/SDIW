@@ -9,11 +9,13 @@
         <ul class="right hide-on-med-and-down">
             <li *ngIf="!userLogged"><a routerLink="/security/login">Iniciar sesión</a></li>
             <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/adviser/adviser-list">Asesores</a></li>
-            <li *ngIf="userLogged"><a routerLink="/property/property-list">Mis publicaciones</a></li>
-            <li *ngIf="userLogged"><a routerLink="/registry/property">Publicar propiedad</a></li>
+            <li *ngIf="userLogged && userInfo.rol!=1"><a routerLink="/property/property-list">Mis publicaciones</a></li>
+            <li *ngIf="userLogged && userInfo.rol!=1"><a routerLink="/registry/property">Publicar propiedad</a></li>
+            <li *ngIf="userLogged && userInfo.rol==1" ><a routerLink="/request/request-list">Mis Solicitudes</a></li>
             <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/department/department-list">Departamentos</a></li>
             <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/city/city-list">Ciudades</a></li>
             <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/type/type-list">Tipos de inmueble</a></li>
+            <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/admin-request/adminRequestList">Solicitudes</a></li>
             <li *ngIf="userLogged"><a routerLink="/security/logout">Salir de sesión</a></li>
             <li *ngIf="!userLogged"><a routerLink="/registry/users">Registrarse</a></li>
 
@@ -25,7 +27,8 @@
     <li *ngIf="!userLogged"><a routerLink="/security/login">Iniciar sesión</a></li>
     <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/adviser/adviser-list">Asesores</a></li>
     <li *ngIf="userLogged"><a routerLink="/property/property-list">Mis publicaciones</a></li>
-    <li *ngIf="userLogged"><a routerLink="/registry/property">Publicar propiedad</a></li>
+    <li *ngIf="userLogged && userInfo.rol!=1"><a routerLink="/registry/property">Publicar propiedad</a></li>
+    <li *ngIf="userLogged && userInfo.rol==1" ><a routerLink="/request/request-list">Mis Solicitudes</a></li>
     <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/department/department-list">Departamentos</a></li>
     <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/city/city-list">Ciudades</a></li>
     <li *ngIf="userLogged && userInfo.rol==3"><a routerLink="/type/type-list">Tipos de inmueble</a></li>

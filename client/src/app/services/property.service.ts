@@ -10,13 +10,19 @@ export class PropertyService {
   url: String = "http://localhost:3000/api/properties"
   urlOT :string="http://localhost:3000/api/properties?filter=%7B%22where%22%3A%7B%22offerType%22%3A%22"
   urlT :string="http://localhost:3000/api/properties?filter=%7B%22where%22%3A%7B%22type%22%3A%22"
+  urlLMP = "http://localhost:3000/api/properties?filter=%7B%22where%22%3A%7B%22contactSeller%22%3A%7B%22like%22%3A%22"
 
   constructor(private http: HttpClient) { }
 
-  loadAllMyProperties():Observable<PropertyModel[]>
+  loadAllMyProperties(id: String):Observable<PropertyModel[]>
+  {
+    return this.http.get<PropertyModel[]>(`${this.urlLMP}${id}%22%7D%7D%7D`)
+  }
+  loadAllProperties():Observable<PropertyModel[]>
   {
     return this.http.get<PropertyModel[]>(`${this.url}`)
   }
+
 
   searchProperty(id: String): Observable<PropertyModel>{
     return this.http.get<PropertyModel>(`${this.url}/${id}`)
@@ -52,7 +58,6 @@ export class PropertyService {
   }
 
   loadPropertiesByType2(tipo2: String):Observable<PropertyModel[]>{
-    console.log(tipo2)
     return this.http.get<PropertyModel[]>(`${this.urlT}${tipo2}%22%7D%7D`)
     
   }

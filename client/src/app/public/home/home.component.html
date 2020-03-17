@@ -1,55 +1,27 @@
 <h5 class="center">Filtro</h5>
-<form [formGroup]="fgValidation" (ngSubmit)="filterType()" class="col s12">
+<form class="col s12">
     <div class="row">
         <div class="input-field col s3 m6">
-            <select id="tipo" class="icons" formControlName="tipo" name="tipo" >
-                <option value="" disabled selected>Selecciona el tipo de oferta</option>
+            <select id="tipo" class="icons" [(ngModel)]="filterOT" name="tipo">
+                <option value="">Todo tipo de oferta</option>
                 <option value="Alquilar" data-icon=.\assets\images\hand.png class="left">Alquilar</option>
                 <option value="Vender" data-icon=".\assets\images\key.png" class="left">Vender</option>
             </select>
             <label>Tipo de oferta</label>
         </div>
 
-        <div class="input-field col s3 m6">
-            <select id="tipo2" class="icons" formControlName="tipo2" name="tipo2" >
-                <option value="" disabled selected>Selecciona el tipo de inmueble</option>
-                <option value="Casa" data-icon=.\assets\images\casa.jpg class="left">Casa</option>
-                <option value="Apartamento" data-icon=".\assets\images\apartamento.jpg" class="left">Apartamento
-                </option>
-                <option value="Apartaestudio" data-icon=".\assets\images\apartaestudio.jpg" class="left">
-                    Apartaestudio
-                </option>
+        <div class="input-field col s12 m6">
+            <select id="tipo2" class="icons" [(ngModel)]="filterType" name="tipo2">
+                <option value="">Todo tipo de inmueble</option>
+                <option *ngFor="let t of typeList" value="{{t.name}}">{{t.name}}</option>
             </select>
             <label>Tipo de inmueble</label>
         </div>
-        <div class="input-field col s3 m6">
-            <select class="icons" formControlName="department" [(ngModel)]="searchDep " (change)="loadCitiesOfDepartment()">
-                <option value="">Seleccione el departamento</option>
-                <option *ngFor="let d of departmentList" [ngValue]="d.name" value="{{d.id}}">{{d.name}}</option>
-            </select>
-            <label>Departamento</label>
-        </div>
-        <div class="input-field col s3 m6">
-            <select class="icons" formControlName="city" [(ngModel)]="searchCity ">
-                <option value="" disabled selected>Selecciona la ciudad</option>
-                <option *ngFor="let c of cityList" value="{{c.name}}">{{c.name}}</option>
-            </select>
-            <label>Ciudad</label>
-        </div>
-    </div>
-    <div>
-        <div class="col s9">
-
-        </div>
-        <button class="btn waves-effect waves-light green" type="submit" name="action">Filtrar
-
-        </button>
     </div>
 
 
 </form>
-
-<label>Any: <input [(ngModel)]="searchText "></label> <br>
+<label>Búsqueda: <input [(ngModel)]="searchText"></label> <br>
 <br />
 <table class="responsive-table">
     <thead>
@@ -79,13 +51,18 @@
             <th>
                 Estado
             </th>
-
+            <th>
+                Descripción
+            </th>
+            <th>
+                Solicitar
+            </th>
 
 
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of propertyList | select:searchDep | select:searchCity |  filter:searchText ">
+        <tr *ngFor="let p of propertyList |  filter:searchText | select:filterType | selectOT: filterOT">
 
             <td>
                 {{p.department}}
@@ -101,19 +78,26 @@
             </td>
             <td>
                 {{p.type}}
-            </td>
-
-
             <td>
                 {{p.offerType}}
             </td>
 
             <td>
+
                 <img src="{{p.photography}}" style="width: 70%;" alt="image" class="square" />
             </td>
             <td>
                 {{p.status}}
             </td>
+            <td>
+                {{p.description}}
+            </td>
+            <td>
+                <button class="btn waves-effect waves-light orange" type="button" name="action"
+                    (click)="sendRequest(p)" >Solicitar
+                </button>
+            </td>
         </tr>
+
     </tbody>
 </table>

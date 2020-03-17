@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { SelectPipe } from './select.pipe';
+import { SelectOTPipe } from './select-ot.pipe';
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { SelectPipe } from './select.pipe';
     HomeComponent,
     PageNotFoundComponent,
     FilterPipe,
-    SelectPipe
+    SelectPipe,
+    SelectOTPipe
   ],
   imports: [
     BrowserModule,

@@ -65,7 +65,7 @@ export class PropertyComponent implements OnInit {
       let tp = this.fg.tipo.value;
       let tp2 = this.fg.tipo2.value;
       let ph = this.fg.photography.value;
-      let cs = ` ${this.userInfo.firstName} ${this.userInfo.firstLastName} - ${this.userInfo.phone}`;
+      let cs = ` ${this.userInfo.email}`;
       let dep = this.fg.department.value;
       let c = this.fg.city.value;
       let des = this.fg.description.value;
@@ -77,7 +77,6 @@ export class PropertyComponent implements OnInit {
           this.secService.registryProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c, des).subscribe(data => {
 
             if (data != null) {
-              console.log(data);
               this.router.navigate(['/property/property-list'])
             }
           });

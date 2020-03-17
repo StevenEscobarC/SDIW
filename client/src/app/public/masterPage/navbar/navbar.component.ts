@@ -31,7 +31,6 @@ export class NavbarComponent implements OnInit {
     this.subscription = this.secService.getUserInfo().subscribe(user => {
 
       this.userInfo = user;
-      console.log("UserInfo: " + JSON.stringify(user))
       this.updateInfo();
       
     });

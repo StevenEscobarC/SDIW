@@ -95,7 +95,6 @@ export class SecurityService {
 
   saveLoginInfo(user: UserModel) {
     user.isLogged = true;
-    console.log("User Login to Save: " + JSON.stringify(user));
     this.userInfo.next(user);
     localStorage.setItem("activeUser", JSON.stringify(user));
   }
@@ -113,7 +112,6 @@ export class SecurityService {
             "content-type": "application/json"
           })
         });
-      console.log("Se llamó a logout");
       localStorage.removeItem("activeUser");
       this.userInfo.next(new UserModel());
 
@@ -129,7 +127,8 @@ export class SecurityService {
         password: p,
         firstLastName: ln,
         firstName: n,
-        phone: ph
+        phone: ph,
+        rol:1
 
       }, {
       headers: new HttpHeaders({

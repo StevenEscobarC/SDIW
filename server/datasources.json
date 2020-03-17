@@ -9,5 +9,22 @@
     "user": "",
     "useNewUrlParser": true,
     "connector": "mongodb"
+  },
+  "Email": {
+    "host": "Email",
+    "name": "Email",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "SMTP",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "auth": {
+          "user": "pruebas.prog3.i@gmail.com",
+          "pass": "oncecaldas11"
+        }
+      }
+    ]
   }
 }

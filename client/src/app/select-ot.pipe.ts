@@ -1,20 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'select'
+  name: 'selectOT'
 })
-export class SelectPipe implements PipeTransform {
+export class SelectOTPipe implements PipeTransform {
 
+  
   transform(item: any, arg: any): any {
     if (arg === '') return item;
     const resultPost = [];
     for (const post of item) {
-      if (post.type.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+      if (post.offerType.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
         resultPost.push(post);
       };
     };
     return resultPost;
 
   }
-}
 
+}

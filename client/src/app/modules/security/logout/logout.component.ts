@@ -13,7 +13,6 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {
     this.secService.logoutUser().subscribe(data => {
-      console.log("Respuesta logout: " + data);
       if (data) {
         
         this.router.navigate(['/home']);

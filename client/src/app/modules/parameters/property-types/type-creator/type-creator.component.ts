@@ -38,7 +38,6 @@ export class TypeCreatorComponent implements OnInit {
 
       this.serType.createType(n).subscribe(data => {
         if (data != null) {
-          console.log(data);
           this.router.navigate(['/type/type-list'])
         }
       })

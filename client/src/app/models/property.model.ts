@@ -1,3 +1,5 @@
+import { UserModel } from './user.model';
+
 export class PropertyModel{
     _id?: String;
     department: String;

@@ -51,6 +51,16 @@ const routes: Routes = [
     path: 'adviser',
     loadChildren: './modules/parameters/adviser/adviser.module#AdviserModule',
     canActivate: [AuthenticationRequiredGuard]
+  },
+  {
+    path: 'request',
+    loadChildren: './modules/parameters/request/request.module#RequestModule',
+    canActivate: [AuthenticationRequiredGuard]
+  },
+  {
+    path: 'admin-request',
+    loadChildren: './modules/parameters/admin-request/admin-request.module#AdminRequestModule',
+    canActivate: [AuthenticationRequiredGuard]
   }
   ,
   {

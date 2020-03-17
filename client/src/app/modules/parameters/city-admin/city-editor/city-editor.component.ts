@@ -56,7 +56,6 @@ export class CityEditorComponent implements OnInit {
 
       this.serCity.updateCity(n, c, this.code,this.depID).subscribe(data => {
         if (data != null) {
-          console.log(data);
           this.router.navigate(['/city/city-list'])
         }
       })

@@ -2,15 +2,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TypeModel } from '../models/typeModel.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserModel } from '../models/user.model';
+import { PropertyModel } from '../models/property.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PropertyTypeService {
   url: String = "http://localhost:3000/api/propertyTypes"
+  urlEmail:String="http://localhost:3000/api/propertyTypes/sendEmail?message="
   constructor(private http: HttpClient) { }
 
   
+  sendEmail(user:UserModel, property: PropertyModel){
+    return this.http.get(`${this.urlEmail}El%20cliente%20${user.firstName}%20${user.firstLastName}%20Con%20correo:${user.email}%0AHa%20solicitado%20el%20siguiente%20inmueble:%0ADescripcion:%20${property.description}%0ATipo%20de%20oferta:%20${property.offerType}%0APrecio:%20${property.price}%0ATipo%20de%20inmueble:%20${property.type}&subject=Soliciud%20de%20inmueble&emailAddresses=${property.contactSeller}`,
+   )
+  }
+
   loadAllTypes(): Observable<TypeModel[]> {
     return this.http.get<TypeModel[]>(`${this.url}`)
   }

@@ -75,7 +75,6 @@ export class PropertyEditorComponent implements OnInit {
           this.serProperty.updateProperty(a, p, ph, tp, tp2, cs, this.depInfo.name, c, this.code).subscribe(data => {
 
             if (data != null) {
-              console.log(data);
               this.router.navigate(['/property/property-list'])
             }
           });

@@ -50,5 +50,13 @@
   "propertyType": {
     "dataSource": "db",
     "public": true
+  },
+  "Email": {
+    "dataSource": "Email",
+    "public": true
+  },
+  "request": {
+    "dataSource": "db",
+    "public": true
   }
 }

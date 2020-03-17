@@ -44,12 +44,9 @@ export class CityCreatorComponent implements OnInit {
       let n = this.fg.name.value;
       let c = this.fg.code.value;
       let d = this.fg.department.value;
-      console.log(d);
-
 
       this.serCity.createCity(n, c, d).subscribe(data => {
         if (data != null) {
-          console.log(data);
           this.router.navigate(['/city/city-list'])
         }
       })

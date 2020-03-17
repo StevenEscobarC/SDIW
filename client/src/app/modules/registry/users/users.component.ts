@@ -40,7 +40,6 @@ export class UsersComponent implements OnInit {
       this.secService.registryUser(n, p, ln, e, ph).subscribe(data => {
 
         if (data != null) {
-          console.log(data);
           this.router.navigate(['/home'])
           this.secService.saveLoginInfo(data);
         } else {
